@@ -6,16 +6,16 @@ use App\Models\Job;
 use App\Models\JobListing;
 
 Route::get('/', function () {
-    dd(JobListing::all());
     return view('home');
 });
 
 Route::get('/jobs', function () {
-    // return view('jobs', ['listJobs' => Job::all()]);
+    $job = JobListing::with('employer')->get();
+    return view('jobs', ['listJobs' => $job]);
 });
 
 Route::get('/job/{id}', function ($id) {
-    // return view('detail-job', ['job' => job::find($id)]);
+    return view('detail-job', ['job' => JobListing::find($id)]);
 });
 
 Route::get('/contact', function () {
