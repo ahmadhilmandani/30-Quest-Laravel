@@ -10,7 +10,8 @@ Route::get('/', function () {
 });
 
 Route::get('/jobs', function () {
-    $job = JobListing::with('employer')->get();
+    // $job = JobListing::with('employer')->get();
+    $job = JobListing::with('employer')->simplePaginate(3);
     return view('jobs', ['listJobs' => $job]);
 });
 
