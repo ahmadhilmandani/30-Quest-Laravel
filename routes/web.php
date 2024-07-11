@@ -16,6 +16,13 @@ Route::get('/jobs', function () {
 
 
 Route::post('/job', function () {
+
+    request()->validate([
+        'title' => ['required'],
+        'salary' => ['required'],
+        'description' => ['required'],
+    ]);
+
     JobListing::create([
         'title' => request('title'),
         'salary' => request('salary'),
